@@ -1,0 +1,32 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px;
+  background-color: black;
+  color: white;
+  position: sticky;
+  top: 0;
+}
+
+ul {
+  display: flex;
+  gap: 20vh;
+}
+
+li {
+  list-style-type: none;
+}
+
+li > * {
+  text-decoration: none;
+  color: white;
+}
+
+li > *:hover {
+  color: antiquewhite;
+}
+
+.active {
+  color: red;
+}
