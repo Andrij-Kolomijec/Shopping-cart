@@ -4,6 +4,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App, { loader as dataLoader } from "./routes/App.jsx";
 import Shop from "./routes/Shop.jsx";
 import Home from "./routes/Home.jsx";
+import About from "./routes/About.jsx";
+import Cart from "./routes/Cart.jsx";
 import ErrorPage from "./routes/ErrorPage.jsx";
 import "./index.css";
 
@@ -21,6 +23,14 @@ const router = createBrowserRouter([
         path: "shop",
         loader: dataLoader,
         element: <Shop />,
+      },
+      {
+        path: "about",
+        element: <About />,
+      },
+      {
+        path: "cart",
+        element: <Cart />,
       },
     ],
   },

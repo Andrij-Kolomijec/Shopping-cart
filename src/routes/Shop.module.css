@@ -27,10 +27,66 @@
 .info {
   display: flex;
   flex-direction: column;
+  gap: 5px;
 }
 
 .item img {
   max-height: 90%;
   max-width: 90%;
   padding: 15px;
+}
+
+.stars {
+  --percent: calc(var(--rating) / 5 * 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-family: Times;
+  line-height: 1;
+}
+
+.stars::before {
+  content: "★★★★★";
+  letter-spacing: 3px;
+  background: linear-gradient(
+    90deg,
+    rgb(247, 197, 0) var(--percent),
+    rgb(197, 197, 197) var(--percent)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.stars > p {
+  font-size: 15px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.add {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+  font-weight: bold;
+  font-size: 15.5px;
+  border: none;
+  border-radius: 4px;
+  background-color: green;
+  color: white;
+  padding: 3px 5px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.add:hover {
+  cursor: pointer;
+  /* transform: ; */
+  background-color: rgb(0, 104, 0);
+}
+
+.add img {
+  height: 20px;
+  padding: 0;
+  filter: invert(100%) sepia(0%) saturate(9%) hue-rotate(169deg)
+    brightness(103%) contrast(104%);
 }

@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 function Header() {
   return (
     <div className={classes.header}>
-      <h1>Welcome!</h1>
+      <h1>Random Stuff</h1>
       <nav>
         <ul>
           <li>
