@@ -1,35 +1,33 @@
 import classes from "./Shop.module.css";
 import { useLoaderData } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import FilterItems from "../components/FilterItems";
+import ItemDetails from "../components/ItemDetails";
+import StarsRating from "../components/StarsRating";
+import AddToCartButton from "../components/AddToCartButton";
 
-function ShowItems({ items }) {
-  console.log(items);
+function ShowItems({ items, onItemClick }) {
   return (
     <div className={classes.items}>
       {items.map((item) => (
         <div className={classes.item} key={item.id}>
           <div className={classes.picture}>
-            <img title={item.description} src={item.image} alt={item.title} />
+            <img
+              draggable={false}
+              title="Show details"
+              id={item.id}
+              src={item.image}
+              alt={item.title}
+              onClick={onItemClick}
+            />
           </div>
           <div className={classes.info}>
             <h4>{item.title}</h4>
             <p>{item.price} €</p>
-            <div
-              className={classes.stars}
-              style={{
-                "--rating": item.rating.rate,
-              }}
-            >
-              <p>{item.rating.count}</p>
-            </div>
+            <StarsRating rating={item.rating} />
           </div>
-
-          <button className={classes.add}>
-            <img src="cart.svg" alt="Cart" />
-            <p>ADD TO CART</p>
-          </button>
+          <AddToCartButton />
         </div>
       ))}
     </div>
@@ -38,6 +36,7 @@ function ShowItems({ items }) {
 
 ShowItems.propTypes = {
   items: PropTypes.array,
+  onItemClick: PropTypes.func,
 };
 
 function Shop() {
@@ -45,6 +44,9 @@ function Shop() {
   const [items, setItems] = useState(allItems);
   const [category, setCategory] = useState("all");
   const [sortOption, setSortOption] = useState("default");
+  const [showModal, setShowModal] = useState(false);
+
+  const openedItemID = useRef(null);
 
   function handleFilter(e) {
     setCategory(e.target.value);
@@ -54,26 +56,21 @@ function Shop() {
     setSortOption(e.target.value);
   }
 
+  function handleOpenModal(e) {
+    openedItemID.current = e.target.id;
+    setShowModal(true);
+  }
+
+  function handleCloseModal() {
+    openedItemID.current = null;
+    setShowModal(false);
+  }
+
   useEffect(() => {
     let updatedItems =
       category === "all"
         ? allItems
         : allItems.filter((item) => item.category === category);
-
-    // if (sortOption !== "default") {
-    //   updatedItems = [...updatedItems].sort((a, b) => {
-    //     switch (sortOption) {
-    //       case "rating":
-    //         return b.rating.rate - a.rating.rate;
-    //       case "priceLH":
-    //         return a.price - b.price;
-    //       case "priceHL":
-    //         return b.price - a.price;
-    //       default:
-    //         return a.id - b.id;
-    //     }
-    //   });
-    // }
 
     updatedItems =
       sortOption === "default"
@@ -89,8 +86,13 @@ function Shop() {
 
   return (
     <>
+      <ItemDetails
+        show={showModal}
+        onClose={handleCloseModal}
+        item={items.find((item) => item.id === +openedItemID.current)}
+      />
       <FilterItems onFilter={handleFilter} onSort={handleSort} />
-      <ShowItems items={items} />
+      <ShowItems items={items} onItemClick={handleOpenModal} />
     </>
   );
 }

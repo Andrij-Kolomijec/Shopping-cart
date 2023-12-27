@@ -12,7 +12,7 @@ function Header() {
               to="/"
               className={({ isActive }) => (isActive ? classes.active : "")}
             >
-              Home
+              <p>Home</p>
             </NavLink>
           </li>
           <li>
@@ -20,7 +20,7 @@ function Header() {
               to="shop"
               className={({ isActive }) => (isActive ? classes.active : "")}
             >
-              Shop
+              <p>Shop</p>
             </NavLink>
           </li>
           <li>
@@ -28,7 +28,7 @@ function Header() {
               to="about"
               className={({ isActive }) => (isActive ? classes.active : "")}
             >
-              About
+              <p>About</p>
             </NavLink>
           </li>
           <li>
@@ -36,7 +36,7 @@ function Header() {
               to="cart"
               className={({ isActive }) => (isActive ? classes.active : "")}
             >
-              Cart
+              <img src="shopping.svg" alt="Cart" />
             </NavLink>
           </li>
         </ul>
