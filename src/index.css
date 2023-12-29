@@ -8,3 +8,9 @@ body {
   background-color: rgb(255, 247, 238);
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 98%;
+}

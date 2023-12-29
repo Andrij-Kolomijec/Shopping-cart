@@ -1,0 +1,15 @@
+.cart {
+  display: flex;
+}
+
+.cart > div {
+  flex: 1;
+  /* border: 1px solid; */
+  margin: 50px;
+}
+
+.content {
+}
+
+.payment {
+}

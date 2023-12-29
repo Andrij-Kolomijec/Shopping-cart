@@ -7,7 +7,7 @@ import ItemDetails from "../components/ItemDetails";
 import StarsRating from "../components/StarsRating";
 import AddToCartButton from "../components/AddToCartButton";
 
-function ShowItems({ items, onItemClick }) {
+function ShowItems({ items, onItemClick, onClick, cartContent }) {
   return (
     <div className={classes.items}>
       {items.map((item) => (
@@ -27,7 +27,11 @@ function ShowItems({ items, onItemClick }) {
             <p>{item.price} €</p>
             <StarsRating rating={item.rating} />
           </div>
-          <AddToCartButton />
+          <AddToCartButton
+            item={item}
+            cartContent={cartContent}
+            onClick={() => onClick(item)}
+          />
         </div>
       ))}
     </div>
@@ -37,9 +41,11 @@ function ShowItems({ items, onItemClick }) {
 ShowItems.propTypes = {
   items: PropTypes.array,
   onItemClick: PropTypes.func,
+  onClick: PropTypes.func,
+  cartContent: PropTypes.array,
 };
 
-function Shop() {
+function Shop({ cartContent, onClick }) {
   const allItems = useLoaderData();
   const [items, setItems] = useState(allItems);
   const [category, setCategory] = useState("all");
@@ -92,9 +98,19 @@ function Shop() {
         item={items.find((item) => item.id === +openedItemID.current)}
       />
       <FilterItems onFilter={handleFilter} onSort={handleSort} />
-      <ShowItems items={items} onItemClick={handleOpenModal} />
+      <ShowItems
+        items={items}
+        onItemClick={handleOpenModal}
+        onClick={onClick}
+        cartContent={cartContent}
+      />
     </>
   );
 }
+
+Shop.propTypes = {
+  cartContent: PropTypes.array,
+  onClick: PropTypes.func,
+};
 
 export default Shop;

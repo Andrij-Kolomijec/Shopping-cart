@@ -1,7 +1,8 @@
 import classes from "./Header.module.css";
+import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 
-function Header() {
+function Header({ cartContent }) {
   return (
     <div className={classes.header}>
       <h1>Random Stuff</h1>
@@ -31,12 +32,17 @@ function Header() {
               <p>About</p>
             </NavLink>
           </li>
-          <li>
+          <li className={classes.wrapper}>
             <NavLink
               to="cart"
               className={({ isActive }) => (isActive ? classes.active : "")}
             >
               <img src="shopping.svg" alt="Cart" />
+              <span className={classes.number}>
+                {cartContent.reduce((acc, i) => {
+                  return acc + i.count;
+                }, 0)}
+              </span>
             </NavLink>
           </li>
         </ul>
@@ -44,5 +50,9 @@ function Header() {
     </div>
   );
 }
+
+Header.propTypes = {
+  cartContent: PropTypes.array,
+};
 
 export default Header;

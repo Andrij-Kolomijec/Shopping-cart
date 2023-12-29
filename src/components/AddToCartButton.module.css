@@ -10,13 +10,17 @@
   background-color: green;
   color: white;
   padding: 5px 7px;
-  transition: background-color 0.2s ease-in-out;
+  transition: /* background-color */ 0.2s ease-in-out;
+  box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.3);
 }
 
 .add:hover {
   cursor: pointer;
-  /* transform: ; */
   background-color: rgb(0, 104, 0);
+}
+
+.add:active {
+  transform: scale(0.9);
 }
 
 .add img {

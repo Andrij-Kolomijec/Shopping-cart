@@ -1,17 +1,24 @@
 import { Outlet } from "react-router-dom";
-import "./App.module.css";
+import classes from "./App.module.css";
 import Footer from "./Footer";
 import Header from "./Header";
+import PropTypes from "prop-types";
 
-function App() {
+function App({ cartContent }) {
   return (
     <>
-      <Header />
-      <Outlet />
+      <div className={classes.wrapper}>
+        <Header cartContent={cartContent} />
+        <Outlet />
+      </div>
       <Footer />
     </>
   );
 }
+
+App.propTypes = {
+  cartContent: PropTypes.array,
+};
 
 export default App;
 
