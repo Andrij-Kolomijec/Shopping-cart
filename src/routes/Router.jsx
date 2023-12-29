@@ -10,7 +10,6 @@ import cartContent from "../components/cartContent";
 
 function Router() {
   const [cartItems, setCartItems] = useState(cartContent);
-
   function handleAddItemToCart(item) {
     setCartItems((prevItems) => {
       const itemIndex = prevItems.findIndex(
@@ -25,27 +24,21 @@ function Router() {
         : [...prevItems, { ...item, count: 1 }];
     });
   }
-
   function handleSubtractItemFromCart(item) {
-    setCartItems(
-      (prevItems) =>
-        prevItems.map((prevItem) =>
-          prevItem.id === item.id
-            ? {
-                ...prevItem,
-                count: prevItem.count <= 1 ? 1 : prevItem.count - 1,
-              }
-            : prevItem
-        )
-
-      //[...prevItems, (item.count = item.count - 1)]);
+    setCartItems((prevItems) =>
+      prevItems.map((prevItem) =>
+        prevItem.id === item.id
+          ? {
+              ...prevItem,
+              count: prevItem.count <= 1 ? 1 : prevItem.count - 1,
+            }
+          : prevItem
+      )
     );
   }
-
   function handleRemoveItemFromCart(item) {
     setCartItems((prevItems) => prevItems.filter((i) => i.id !== item.id));
   }
-
   const router = createBrowserRouter([
     {
       path: "/",

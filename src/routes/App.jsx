@@ -3,6 +3,7 @@ import classes from "./App.module.css";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import PropTypes from "prop-types";
+import data from "../components/fakeStoreApiData";
 
 function App({ cartContent }) {
   return (
@@ -24,6 +25,7 @@ export default App;
 
 export async function loader() {
   const response = await fetch("https://fakestoreapi.com/products/");
-  const resData = await response.json();
+  let resData;
+  !response.ok ? (resData = data) : (resData = await response.json());
   return resData;
 }
