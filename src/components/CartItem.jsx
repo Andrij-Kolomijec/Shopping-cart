@@ -26,6 +26,7 @@ function CartItem({ item, onClickAdd, onClickSubtract, onClickRemove }) {
       <p className={classes.price}>{(item.price * item.count).toFixed(2)} €</p>
       <img
         className={classes.empty}
+        title="Remove from Cart"
         onClick={() => onClickRemove(item)}
         src="cart-remove.svg"
         alt="Empty cart"

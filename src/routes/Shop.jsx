@@ -94,6 +94,7 @@ function Shop({ cartContent, onClick }) {
     <>
       <ItemDetails
         show={showModal}
+        onClickAdd={onClick}
         onClose={handleCloseModal}
         item={items.find((item) => item.id === +openedItemID.current)}
       />

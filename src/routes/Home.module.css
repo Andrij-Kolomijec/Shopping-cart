@@ -1,3 +1,15 @@
 .home {
-  /* background-color: green; */
+  height: 50vh;
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  font-family: "Pacifico", "Franklin Gothic Medium", "Arial Narrow", Arial,
+    sans-serif;
+}
+
+.home h1 {
+  font-size: 70px;
 }

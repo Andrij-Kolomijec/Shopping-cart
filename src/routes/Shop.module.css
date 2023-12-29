@@ -4,7 +4,7 @@
   grid-auto-rows: 450px;
   gap: 30px;
   place-content: space-evenly;
-  margin: 50px;
+  margin: 0 50px;
 }
 
 .item {
@@ -72,4 +72,13 @@
   padding: 0;
   filter: invert(100%) sepia(0%) saturate(9%) hue-rotate(169deg)
     brightness(103%) contrast(104%);
+}
+
+@media (max-width: 450px) {
+  .items {
+    grid-template: repeat(auto-fit, 450px) / repeat(
+        auto-fit,
+        minmax(200px, 1fr)
+      );
+  }
 }

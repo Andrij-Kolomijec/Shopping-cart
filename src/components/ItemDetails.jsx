@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import StarsRating from "./StarsRating";
 import AddToCartButton from "./AddToCartButton";
 
-function ItemDetails({ show, onClose, item }) {
+function ItemDetails({ show, onClickAdd, onClose, item }) {
   return (
     <div
       className={`${classes.modal} ${
@@ -20,7 +20,7 @@ function ItemDetails({ show, onClose, item }) {
           <StarsRating rating={item.rating} />
           <p>{item.description}</p>
           <p>{item.price} €</p>
-          <AddToCartButton />
+          <AddToCartButton onClick={() => onClickAdd(item)} />
         </div>
       )}
     </div>
@@ -29,6 +29,7 @@ function ItemDetails({ show, onClose, item }) {
 
 ItemDetails.propTypes = {
   item: PropTypes.object,
+  onClickAdd: PropTypes.func,
   onClose: PropTypes.func,
   show: PropTypes.bool,
 };

@@ -1,5 +1,6 @@
 .filterOrder {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
 }
@@ -30,7 +31,7 @@ select {
 }
 
 select option {
-  background-color: white;
+  background-color: rgb(255, 187, 62);
   color: black;
   outline: none;
   border: none;
@@ -44,12 +45,12 @@ select:focus {
 
 select:hover {
   cursor: pointer;
-  background-color: antiquewhite;
+  background-color: rgb(255, 221, 158);
   border-radius: 5px;
 }
 
 .order {
-  margin-right: 50px;
+  margin: 0 50px;
 }
 
 .order > select {
