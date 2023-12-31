@@ -1,5 +1,6 @@
 .cart {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .cart > div {
@@ -53,4 +54,16 @@
 
 .wrapper button:active {
   transform: scale(0.9);
+}
+
+@media (max-width: 1100px) {
+  .cart {
+    display: block;
+  }
+  .cart > div {
+    margin: 50px;
+  }
+  .wrapper {
+    position: static;
+  }
 }
