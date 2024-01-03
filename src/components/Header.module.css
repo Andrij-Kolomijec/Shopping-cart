@@ -42,19 +42,18 @@ li > *:hover {
   cursor: pointer;
 }
 
-li p {
+/* Simple ease effect using borders */
+/* li p {
   border-bottom: 4px solid black;
+  transition: border-bottom 0.5s ease;
   color: rgb(255, 187, 62);
   padding: 2px 8px;
 }
 
-li p:hover {
-  border-bottom: 4px solid rgb(255, 187, 62);
-}
-
+li p:hover,
 .active > p {
   border-bottom: 4px solid rgb(255, 187, 62);
-}
+} */
 
 .wrapper > * {
   display: flex;
@@ -91,4 +90,32 @@ li p:hover {
     padding: 0;
     gap: 5px;
   }
+}
+
+/* Slide in effect using ::after pseudo element*/
+li p {
+  display: block;
+  position: relative;
+  padding: 0.2em 0;
+  overflow: hidden;
+  color: rgb(255, 187, 62);
+}
+
+li p::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: rgb(255, 187, 62);
+  opacity: 0;
+  transition: opacity 500ms, transform 500ms;
+  transform: translate3d(-100%, 0, 0);
+}
+
+li p:hover::after,
+li a.active p::after {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
 }
