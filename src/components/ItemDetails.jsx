@@ -12,7 +12,10 @@ function ItemDetails({ show, onClickAdd, onClose, item }) {
       onClick={onClose}
     >
       {show && (
-        <div className={classes.content} onClick={(e) => e.stopPropagation()}>
+        <div
+          className={classes.content}
+          onClick={(e) => screen.width > 1000 && e.stopPropagation()}
+        >
           <h4>{item.title}</h4>
           <div className={classes.picture}>
             <img draggable={false} src={item.image} alt={item.title} />
@@ -20,7 +23,12 @@ function ItemDetails({ show, onClickAdd, onClose, item }) {
           <StarsRating rating={item.rating} />
           <p>{item.description}</p>
           <p>{item.price} €</p>
-          <AddToCartButton onClick={() => onClickAdd(item)} />
+          <AddToCartButton
+            onClick={(e) => {
+              e.stopPropagation();
+              onClickAdd(item);
+            }}
+          />
         </div>
       )}
     </div>
