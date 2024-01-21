@@ -11,8 +11,6 @@ function AddToCartButton({ onClick }) {
 }
 
 AddToCartButton.propTypes = {
-  item: PropTypes.object,
-  cartContent: PropTypes.array,
   onClick: PropTypes.func,
 };
 

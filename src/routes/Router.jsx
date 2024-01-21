@@ -7,6 +7,7 @@ import About from "./About.jsx";
 import Cart from "./Cart.jsx";
 import ErrorPage from "./ErrorPage.jsx";
 import cartContent from "../components/cartContent";
+import ItemDetails from "./ItemDetails.jsx";
 
 function Router() {
   const [cartItems, setCartItems] = useState(cartContent);
@@ -51,10 +52,16 @@ function Router() {
         },
         {
           path: "shop",
+          id: "shop",
           loader: dataLoader,
-          element: (
-            <Shop cartContent={cartItems} onClick={handleAddItemToCart} />
-          ),
+          element: <Shop onClick={handleAddItemToCart} />,
+          children: [
+            {
+              path: ":id",
+              // loader: dataLoader,
+              element: <ItemDetails onClickAdd={handleAddItemToCart} />,
+            },
+          ],
         },
         {
           path: "about",

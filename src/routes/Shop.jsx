@@ -1,37 +1,33 @@
 import classes from "./Shop.module.css";
-import { useLoaderData } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
+import { useLoaderData, Outlet, Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import FilterItems from "../components/FilterItems";
-import ItemDetails from "../components/ItemDetails";
 import StarsRating from "../components/StarsRating";
 import AddToCartButton from "../components/AddToCartButton";
 
-function ShowItems({ items, onItemClick, onClick, cartContent }) {
+function ShowItems({ items, onClick }) {
   return (
     <div className={classes.items}>
       {items.map((item) => (
         <div className={classes.item} key={item.id}>
           <div className={classes.picture}>
-            <img
-              draggable={false}
-              title="Show details"
-              id={item.id}
-              src={item.image}
-              alt={item.title}
-              onClick={onItemClick}
-            />
+            <Link to={item.id.toString()}>
+              <img
+                draggable={false}
+                title="Show details"
+                id={item.id}
+                src={item.image}
+                alt={item.title}
+              />
+            </Link>
           </div>
           <div className={classes.info}>
             <h4>{item.title}</h4>
             <p>{item.price} €</p>
             <StarsRating rating={item.rating} />
           </div>
-          <AddToCartButton
-            item={item}
-            cartContent={cartContent}
-            onClick={() => onClick(item)}
-          />
+          <AddToCartButton onClick={() => onClick(item)} />
         </div>
       ))}
     </div>
@@ -40,19 +36,14 @@ function ShowItems({ items, onItemClick, onClick, cartContent }) {
 
 ShowItems.propTypes = {
   items: PropTypes.array,
-  onItemClick: PropTypes.func,
   onClick: PropTypes.func,
-  cartContent: PropTypes.array,
 };
 
-function Shop({ cartContent, onClick }) {
+function Shop({ onClick }) {
   const allItems = useLoaderData();
   const [items, setItems] = useState(allItems);
   const [category, setCategory] = useState("all");
   const [sortOption, setSortOption] = useState("default");
-  const [showModal, setShowModal] = useState(false);
-
-  const openedItemID = useRef(null);
 
   function handleFilter(e) {
     setCategory(e.target.value);
@@ -60,16 +51,6 @@ function Shop({ cartContent, onClick }) {
 
   function handleSort(e) {
     setSortOption(e.target.value);
-  }
-
-  function handleOpenModal(e) {
-    openedItemID.current = e.target.id;
-    setShowModal(true);
-  }
-
-  function handleCloseModal() {
-    openedItemID.current = null;
-    setShowModal(false);
   }
 
   useEffect(() => {
@@ -92,25 +73,14 @@ function Shop({ cartContent, onClick }) {
 
   return (
     <>
-      <ItemDetails
-        show={showModal}
-        onClickAdd={onClick}
-        onClose={handleCloseModal}
-        item={items.find((item) => item.id === +openedItemID.current)}
-      />
+      <Outlet />
       <FilterItems onFilter={handleFilter} onSort={handleSort} />
-      <ShowItems
-        items={items}
-        onItemClick={handleOpenModal}
-        onClick={onClick}
-        cartContent={cartContent}
-      />
+      <ShowItems items={items} onClick={onClick} />
     </>
   );
 }
 
 Shop.propTypes = {
-  cartContent: PropTypes.array,
   onClick: PropTypes.func,
 };
 
