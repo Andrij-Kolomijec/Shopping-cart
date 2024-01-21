@@ -1,6 +1,7 @@
 import classes from "./Header.module.css";
 import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
+import shopping from "/shopping.svg";
 
 function Header({ cartContent }) {
   return (
@@ -37,7 +38,7 @@ function Header({ cartContent }) {
               to="cart"
               className={({ isActive }) => (isActive ? classes.active : "")}
             >
-              <img src="shopping.svg" alt="Cart" />
+              <img src={shopping} alt="Cart" />
               <span className={classes.number}>
                 {cartContent.reduce((acc, i) => {
                   return acc + i.count;
