@@ -2,6 +2,4 @@
 
 [:arrow_forward: visit here](https://resplendent-starburst-643302.netlify.app/)
 
-Assignment from [The Odin Project](https://www.theodinproject.com/lessons/node-path-react-new-shopping-cart) course.
-
-Fake e-shop project for practicing react router.
+Fake e-shop project for practicing **react-router**. Fetched data managed with **tanstack/react query**. State managed via **Redux**.
