@@ -1,7 +1,7 @@
 import classes from "./RatingStars.module.css";
 
 type StarsProps = {
-  rating: {
+  rating?: {
     rate: number;
     count: number;
   };
@@ -13,11 +13,11 @@ export default function RatingStars({ rating }: StarsProps) {
       className={classes.stars}
       style={
         {
-          "--rating": rating.rate,
+          "--rating": rating!.rate,
         } as React.CSSProperties
       }
     >
-      <p>{rating.count}</p>
+      <p>{rating!.count}</p>
     </div>
   );
 }

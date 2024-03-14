@@ -1,7 +1,7 @@
 import classes from "./Item.module.css";
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import fetchStoreItems from "../utils/http";
+import fetchStoreItems, { StoreItem } from "../utils/http";
 import RatingStars from "../components/RatingStars";
 import AddToCartButton from "../components/AddToCartButton";
 
@@ -16,15 +16,12 @@ export default function Item() {
     placeholderData: [],
   });
 
-  const item = data!.find((item) => item.id === Number(id));
+  const item = data!.find((item) => item.id === Number(id)) as StoreItem;
+
   function handleClose() {
     navigate("/shop");
   }
 
-  function handleAddToCart(e: React.ChangeEvent<HTMLSelectElement>) {
-    e.stopPropagation();
-    // onClickAdd(item);
-  }
   return (
     <div
       className={`${classes.modal} ${classes["display-block"]}`}
@@ -41,7 +38,7 @@ export default function Item() {
         <RatingStars rating={item!.rating} />
         <p>{item!.description}</p>
         <p>{item!.price} €</p>
-        <AddToCartButton onClick={handleAddToCart} />
+        <AddToCartButton item={item} />
       </div>
     </div>
   );
