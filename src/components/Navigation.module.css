@@ -5,7 +5,7 @@
   align-items: center;
   padding: 30px;
   background-color: black;
-  color: rgb(255, 187, 62);
+  color: var(--mainColor);
   position: sticky;
   top: 0;
   z-index: 1;
@@ -20,6 +20,13 @@
   height: 25px;
   filter: invert(92%) sepia(15%) saturate(6488%) hue-rotate(327deg)
     brightness(105%) contrast(101%);
+  transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+}
+
+.header img:hover {
+  transform: scale(1.1);
+  filter: invert(84%) sepia(10%) saturate(2103%) hue-rotate(327deg)
+    brightness(116%) contrast(100%);
 }
 
 ul {
@@ -40,19 +47,6 @@ li > * {
 li > *:hover {
   cursor: pointer;
 }
-
-/* Simple ease effect using borders */
-/* li p {
-  border-bottom: 4px solid black;
-  transition: border-bottom 0.5s ease;
-  color: rgb(255, 187, 62);
-  padding: 2px 8px;
-}
-
-li p:hover,
-.active > p {
-  border-bottom: 4px solid rgb(255, 187, 62);
-} */
 
 .wrapper > * {
   display: flex;
@@ -87,7 +81,7 @@ li p:hover,
 @media (max-width: 400px) {
   ul {
     padding: 0;
-    gap: 5px;
+    gap: 1rem;
   }
 }
 
@@ -97,7 +91,7 @@ li p {
   position: relative;
   padding: 0.2em 0;
   overflow: hidden;
-  color: rgb(255, 187, 62);
+  color: var(--mainColor);
 }
 
 li p::after {
@@ -107,7 +101,7 @@ li p::after {
   left: 0;
   width: 100%;
   height: 4px;
-  background-color: rgb(255, 187, 62);
+  background-color: var(--mainColor);
   opacity: 0;
   transition: opacity 500ms, transform 500ms;
   transform: translate3d(-100%, 0, 0);
