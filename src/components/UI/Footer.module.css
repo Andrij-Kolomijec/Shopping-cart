@@ -1,0 +1,13 @@
+.footer {
+  text-align: center;
+  padding: 20px;
+}
+
+.footer img {
+  height: 42px;
+  transition: transform 1.4s ease-in-out;
+}
+
+.footer img:hover {
+  transform: rotate(720deg) scale(1.3);
+}

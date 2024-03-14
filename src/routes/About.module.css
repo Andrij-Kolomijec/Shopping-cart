@@ -1,0 +1,18 @@
+.about {
+  height: 50vh;
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+@media (max-width: 1100px) {
+  .about {
+    height: 60vh;
+    width: auto;
+    padding: 30px;
+  }
+}

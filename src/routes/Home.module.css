@@ -1,0 +1,26 @@
+.home {
+  height: 50vh;
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  font-family: "Pacifico";
+}
+
+.home h1 {
+  font-size: 70px;
+  text-align: center;
+}
+
+@media (max-width: 1100px) {
+  .home {
+    height: 60vh;
+    width: auto;
+    padding: 30px;
+  }
+  .home h1 {
+    font-size: 50px;
+  }
+}
