@@ -4,13 +4,6 @@ function About() {
   return (
     <div className={classes.about}>
       <div>
-        This project is an assignment from on&nbsp;
-        <a href="https://www.theodinproject.com/lessons/node-path-react-new-shopping-cart">
-          The Odin Project
-        </a>
-        &nbsp;course.
-      </div>
-      <div>
         Fake store data by&nbsp;
         <a href="https://fakestoreapi.com/">Fakestoreapi</a>.
       </div>
